@@ -24,7 +24,7 @@ public Action Event_PlayerSpawn(Event event, const char[] name, bool dontBroadca
     int Client = GetClientOfUserId(clientID);
     
     Client_RemoveAllWeapons(Client);
-    CreateTimer(0.1, Timer_GiveWeapons, clientID);
+    CreateTimer(0.1, Timer_GiveWeapons, clientID);  //Creates a timer with 0.1 wait.Does Timer_GiveWeapons function. 
 }
 
 public Action Timer_GiveWeapons(Handle timer, any data)
