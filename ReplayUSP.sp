@@ -7,7 +7,7 @@
 
 public Plugin myinfo = {
     name = "Make Replay Bots Great Again",
-    author = "Clarkey",
+    author = "Ocelot",
     description = "Gives Replay Bots USP again",
     version = "1.0",
     url = "http://www.superfunclimb.club"
