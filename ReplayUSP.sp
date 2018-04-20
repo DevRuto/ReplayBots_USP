@@ -7,7 +7,7 @@
 
 public Plugin myinfo = {
     name = "Make Replay Bots Great Again",
-    author = "Ocelot",
+    author = "Clarkey",
     description = "Gives Replay Bots USP again",
     version = "1.0",
     url = "http://www.superfunclimb.club"
@@ -23,8 +23,11 @@ public Action Event_PlayerSpawn(Event event, const char[] name, bool dontBroadca
     int clientID = GetEventInt(event, "userid");
     int Client = GetClientOfUserId(clientID);
     
-    Client_RemoveAllWeapons(Client);
-    CreateTimer(0.1, Timer_GiveWeapons, clientID);  //Creates a timer with 0.1 wait.Does Timer_GiveWeapons function. 
+    if (IsFakeClient(Client))
+    {
+    	Client_RemoveAllWeapons(Client);
+   		CreateTimer(0.1, Timer_GiveWeapons, clientID);
+   	}
 }
 
 public Action Timer_GiveWeapons(Handle timer, any data)
@@ -32,12 +35,12 @@ public Action Timer_GiveWeapons(Handle timer, any data)
     int Client = GetClientOfUserId(data);
     int Team = GetClientTeam(Client);
     
-    if (Team == CS_TEAM_CT)
+    if ((Team == CS_TEAM_CT) && IsFakeClient(Client))
     {
         GivePlayerItem(Client, "weapon_usp_silencer");
         GivePlayerItem(Client, "weapon_knife");
     }
-    else if (Team == CS_TEAM_T)
+    else if ((Team == CS_TEAM_T) && IsFakeClient(Client))
     {
         GivePlayerItem(Client, "weapon_usp_silencer");
         GivePlayerItem(Client, "weapon_knife_t");
